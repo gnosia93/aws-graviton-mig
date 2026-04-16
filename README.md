@@ -1,7 +1,3 @@
-# aws-graviton-mig
-
-
-
 ## [AWS Transform Customs](https://docs.aws.amazon.com/transform/latest/userguide/transform-aws-customs.html) ##
 
 ### AWS/early-access-java-x86-to-graviton 구체적 기능 ###
