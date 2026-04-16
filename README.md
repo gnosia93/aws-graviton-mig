@@ -101,7 +101,6 @@ atx custom def exec \
 * -x : 비대화형 모드 (사람 개입 없이 자동 실행)
 * -t : 모든 도구 자동 승인
 
-
 #### 설정 파일 만들어서 실행 ####
 [config.yaml]
 ```
@@ -115,4 +114,40 @@ additionalPlanContext: |
 아래 명령어로 실행한다.
 ```
 atx custom def exec --configuration file://config.yaml -x -t
+```
+
+#### 3. 실행 결과 ####
+```
+🔍 Analyzing codebase at ./my-java-project...
+📋 Scanning dependencies for Arm64 compatibility...
+
+Found 3 potential Arm64 incompatibilities:
+
+  1. io.netty:netty-transport-native-epoll:4.1.68.Final
+     - classifier: linux-x86_64 (x86 only)
+     → Updating to 4.1.100.Final with os-detected classifier
+
+  2. org.rocksdb:rocksdbjni:6.22.1
+     - Known Arm64 incompatibility in this version
+     → Updating to 8.5.3 (Arm64 supported)
+
+  3. src/main/java/com/example/NativeLoader.java:15
+     - Hardcoded x86_64 library path detected
+     → Adding aarch64 architecture detection
+
+🔧 Applying changes...
+  ✅ Updated pom.xml (2 dependency changes)
+  ✅ Modified NativeLoader.java (architecture detection added)
+
+🏗️ Running build command: mvn clean install
+  ✅ BUILD SUCCESS
+
+📊 Transformation Summary:
+  - Files modified: 2
+  - Dependencies updated: 2
+  - Code patterns fixed: 1
+  - Build: PASSED
+  - Tests: 14/14 PASSED
+
+Agent minutes used: 8.25
 ```
