@@ -102,7 +102,7 @@ atx custom def exec \
 * -t : 모든 도구 자동 승인
 
 
-* 설정 파일 만들어서 실행
+#### 설정 파일 만들어서 실행 ####
 [config.yaml]
 ```
 codeRepositoryPath: ./my-java-project
