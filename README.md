@@ -116,7 +116,7 @@ additionalPlanContext: |
 atx custom def exec --configuration file://config.yaml -x -t
 ```
 
-#### 3. 실행 결과 ####
+[출력 샘플]
 ```
 🔍 Analyzing codebase at ./my-java-project...
 📋 Scanning dependencies for Arm64 compatibility...
@@ -151,3 +151,27 @@ Found 3 potential Arm64 incompatibilities:
 
 Agent minutes used: 8.25
 ```
+
+#### 3. 결과확인 ####
+변환 완료 후 Git으로 변경 사항을 확인할 수 있다.
+```
+# 변경된 파일 확인
+git status
+
+# 변경 내역 상세 확인
+git diff HEAD~1
+
+# 커밋 로그 확인
+git log --oneline
+```
+
+AWS Transform custom은 변환 작업을 수행할 때 중간 단계마다 Git 커밋을 자동으로 만든다.
+그래서 transform 실행 전에 프로젝트가 반드시 Git repo여야 한다. (git init 필수).
+
+동작 방식을 정리하면:
+```
+transform 실행 전 현재 상태가 Git에 커밋되어 있어야 함
+transform이 변경을 가할 때마다 중간 커밋을 자동 생성
+완료 후 git diff <원래 커밋 ID>로 전체 변경 사항을 한눈에 볼 수 있음
+```
+즉, transform이 뭘 바꿨는지 추적하고, 마음에 안 들면 git revert로 되돌릴 수 있게 하려는 목적이다. 변환 도구가 코드를 직접 건드리니까, Git을 일종의 안전장치로 쓰는 것이다.
