@@ -36,7 +36,7 @@ additionalPlanContext: |
   Validate against our integration test suite.
 ```
 
-## 총평 ##
+### 총평 ###
 순수 Java 코드는 JVM 위에서 돌아가기 때문에 x86이든 ARM64든 바이트코드 레벨에서 이미 플랫폼 독립적이다. 
 이 transform이 실질적으로 의미 있는 경우는 굉장히 제한적이다.
 ```
